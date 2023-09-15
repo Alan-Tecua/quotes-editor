@@ -9,7 +9,7 @@ class Quote < ApplicationRecord
   # after_destroy_commit -> { broadcast_remove_to "quotes" }
 
   # this line bellow is equivelant to the lines above
-  broadcasts_to ->(quote) { "quotes" }, inserts_by: :prepend
+  broadcasts_to ->(quote) { [quote.company, "quotes"] }, inserts_by: :prepend
 
   # Ex:- scope :active, -> {where(:active => true)}
 end
